@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Authorization</title>
+</head>
+
+<body style="background-color: rgb(115, 147, 179); font-family: 'Times New Roman', Times, serif;">
+    <h1 style="text-align: center; margin-top: 20%;">Spotify Authorization</h1>
+    <p style="text-align: center;">Please enter the following code into <a
+            href="https://github.com/onlinechronically/tail">tail</a>, to track your playback.</p>
+    <p style="text-align: center;"><strong>Code</strong>:
+        <a id="spotify-code">ERROR</a>
+    </p>
+    <img style="display: block; margin: 0 auto;" src="/assets/musicnotes.gif">
+    <script>
+        let pairs = Array.from(new URLSearchParams(window.location.search).entries()).filter(pair => pair[0] == "code").map(pair => pair[1])
+        if (pairs.length > 0) {
+            document.getElementById("spotify-code").innerText = pairs[0]
+        }
+    </script>
+</body>
+
+</html>
