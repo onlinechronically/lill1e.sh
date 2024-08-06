@@ -19,7 +19,7 @@ func main() {
 	serverRouter.NotFoundHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "views/construction.html")
 	})
-	err := http.ListenAndServe(":8080", serverRouter)
+	err := http.ListenAndServe(":8888", serverRouter)
 	if err != nil {
 		log.Fatal("There was an error starting the server: ", err)
 	}
