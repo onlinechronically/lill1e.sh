@@ -11,14 +11,22 @@
     <h1 style="text-align: center; margin-top: 20%;">Spotify Authorization</h1>
     <p style="text-align: center;">Please enter the following code into <a
             href="https://github.com/onlinechronically/tail">tail</a>, to track your playback.</p>
-    <p style="text-align: center;"><strong>Code</strong>:
+    <p style="text-align: center;"><strong id="base-text">Code</strong>:
         <a id="spotify-code">ERROR</a>
     </p>
     <img style="display: block; margin: 0 auto;" src="/assets/musicnotes.gif">
     <script>
-        let pairs = Array.from(new URLSearchParams(window.location.search).entries()).filter(pair => pair[0] == "code").map(pair => pair[1])
-        if (pairs.length > 0) {
+        let pairs = Array.from(new URLSearchParams(window.location.search).entries())
+        let errorPairs = pairs.filter(pair => pair[0] == "error").map(pair => pair[1])
+        let codePairs = pairs.filter(pair => pair[0] == "code").map(pair => pair[1])
+        if (errorPairs.length > 0) {
+            document.getElementById("base-text").innerText = "Error"
+            document.getElementById("spotify-code").innerText = errorPairs[0]
+        } else if (pairs.length > 0) {
             document.getElementById("spotify-code").innerText = pairs[0]
+        } else {
+            document.getElementById("base-text").innerText = "Error"
+            document.getElementById("spotify-code").innerText = "Please try again."
         }
     </script>
 </body>
